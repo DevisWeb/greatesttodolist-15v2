@@ -1,0 +1,94 @@
+.task-container {
+  width: 48%;
+  height: 700px;
+  background-color: #004643;
+  padding: 1em;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-y: auto;
+  box-shadow: 0.5em 0.5em 0.5em lightgray;
+}
+
+.task-card {
+  width: 47%;
+  height: 400px;
+  margin: 0.4em;
+  padding: 0.75em;
+  box-shadow: 0.5em 0.5em 0.5em black;
+}
+
+.task-todo {
+  background-color: #f0544f;
+}
+
+.task-done {
+  background-color: #60992d;
+}
+
+.task-content {
+  width: 100%;
+  height: 100%;
+  padding: 0.75em;
+  background-color: white;
+  border-radius: 0.75em;
+  justify-content: space-between;
+}
+
+.cards-view h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.cards-view p {
+  font-size: 1.25em;
+  margin-bottom: 1em;
+}
+
+.task-duedate {
+  text-align: center;
+}
+
+.task-controls {
+  width: 100%;
+  height: 50px;
+  border-radius: 0.5em;
+  justify-content: space-around;
+  align-content: center;
+  color: white;
+}
+
+.task-controls-todo {
+  background-color: rgba(240, 84, 79, 0.3);
+}
+
+.task-controls-done {
+  background-color: rgba(96, 153, 45, 0.3);
+}
+
+.task-delete {
+  background-color: red;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  color: white;
+}
+
+.task-edit {
+  background-color: blue;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  color: white;
+}
+
+.task-complete {
+  background-color: #60992d;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  color: white;
+}
+
+.task-uncomplete {
+  background-color: #f0544f;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  color: white;
+}

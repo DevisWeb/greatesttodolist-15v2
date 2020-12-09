@@ -14,6 +14,10 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;900&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/28d582c70e.js"
+      crossorigin="anonymous"
+    ></script>
     <title>GreatestToDoList | How To</title>
   </head>
   <body>
@@ -30,24 +34,32 @@
           <div class="todo-form-row">
             <div class="todo-form-column form-col-left">
               <label for="task">Task Title</label>
-              <input type="text" id="task" placeholder="Task Title" />
+              <input
+                type="text"
+                id="form-task-title"
+                placeholder="Task Title"
+              />
             </div>
             <div class="todo-form-column form-col-right">
               <label for="dueDate">Due-Date</label>
-              <input type="date" placeholder="Due Date" />
+              <input
+                type="date"
+                id="form-task-duedate"
+                placeholder="Due Date"
+              />
             </div>
           </div>
           <div class="todo-form-row">
             <div class="todo-form-column form-col-left">
               <label for="description">Description</label>
               <textarea
-                id="description"
+                id="form-task-description"
                 placeholder="Description"
                 rows="3"
               ></textarea>
             </div>
             <div class="todo-form-column form-col-right form-button-position">
-              <button id="button" class="button-add-task">Add Task</button>
+              <button id="form-submit" class="button-add-task">Add Task</button>
             </div>
           </div>
         </form>
@@ -55,27 +67,48 @@
         <!-- SECTION-1 (to-do-cards) -->
         <section class="horizontal cards-view">
           <div class="task-container horizontal">
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
+            <div class="task-card task-todo">
+              <div class="task-content vertical">
+                <h2 class="task-title">Task title</h2>
+                <p class="task-description">
+                  This is the description of this task
+                </p>
+                <p class="task-duedate">2020/12/08</p>
+                <div class="horizontal task-controls task-controls-todo">
+                  <a href="#" class="task-delete">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                  <a href="#" class="task-edit">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="#" class="task-complete">
+                    <i class="fas fa-check"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="task-container horizontal">
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
-            <div class="task-card"></div>
+            <div class="task-card task-done">
+              <div class="task-content vertical">
+                <h2 class="task-title">Task title</h2>
+                <p class="task-description">
+                  This is the description of this task
+                </p>
+                <p class="task-duedate">2020/12/08</p>
+                <div class="horizontal task-controls task-controls-done">
+                  <a href="#" class="task-delete">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                  <a href="#" class="task-edit">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="#" class="task-uncomplete">
+                    <i class="fas fa-times"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
         <!-- END SECTION-1 -->

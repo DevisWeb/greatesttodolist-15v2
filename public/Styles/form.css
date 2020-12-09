@@ -7,12 +7,11 @@ colors:
 #faf4d3 creme rgb(250,244,211)
 */
 .todo-form {
-  width: 75%;
   margin: 3vh auto;
   padding: 0.4rem;
   border: 1px solid black;
   background: rgba(250, 244, 211, 0.7);
-  font-size: 1.4rem;
+  font-size: 1rem;
   overflow: hidden;
 }
 .todo-form-row {

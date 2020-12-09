@@ -44,6 +44,10 @@
   margin-bottom: 1em;
 }
 
+.task-duedate {
+  text-align: center;
+}
+
 .task-controls {
   width: 100%;
   height: 50px;

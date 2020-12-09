@@ -1,0 +1,94 @@
+/* form.css - stylings for input form */
+/*
+colors: 
+#60992D greenligt  rgba(96, 153, 45, 0.2)
+#004643 greendark rgb(0,70,67)
+#f0544f salmon rgb(240,84,79) 
+#faf4d3 creme rgb(250,244,211)
+*/
+.todo-form {
+  width: 75%;
+  margin: 3vh auto;
+  padding: 0.4rem;
+  border: 1px solid black;
+  background: rgba(250, 244, 211, 0.7);
+  font-size: 1.4rem;
+  overflow: hidden;
+}
+.todo-form-row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  columns: 2;
+  gap: 2rem;
+}
+
+.todo-form-column {
+  width: 100%;
+  padding: 0.4rem 1rem;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.form-col-left {
+  flex: 2;
+}
+.form-col-right {
+  flex: 1;
+}
+.form-col-right.form-button-position {
+  justify-content: flex-end;
+}
+
+.todo-form label {
+  flex: 1;
+  font-weight: 700;
+  display: flex;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.todo-form input,
+.todo-form textarea {
+  flex: 4;
+  margin: 0.3rem;
+  max-width: 90%;
+  font-size: 1.4rem;
+  background: rgba(96, 153, 45, 0.2); /* #60992d; */
+  border: 1px solid rgba(240, 84, 79, 0.8);
+  color: rgba(78, 75, 75, 0.3);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
+}
+.todo-form input:hover,
+.todo-form textarea:hover {
+  background: rgba(96, 153, 45, 0.1);
+  border: 2px solid rgba(240, 84, 79, 0.8);
+  padding: 0.04rem 0.3rem;
+}
+.todo-form .form-col-right label {
+  flex: 1 auto;
+}
+.todo-form .form-col-right input {
+  flex: 2 auto;
+}
+
+.button-add-task {
+  height: 2.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  background: rgba(240, 84, 79, 0.8);
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+  margin: 0.2rem 0.3rem;
+  letter-spacing: 0.1rem;
+  align-self: end;
+}
+.button-add-task:hover {
+  background-color: #fff;
+  color: #f0544f;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid #f0544f;
+}

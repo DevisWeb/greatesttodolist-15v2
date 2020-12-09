@@ -9,6 +9,7 @@
       content="This is the GreatestToDoList - the greatest app you have ever used."
     />
     <link rel="stylesheet" type="text/css" href="./public/Styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="./public/Styles/form.css" />
     <title>GreatestToDoList | How To</title>
   </head>
   <body>
@@ -19,14 +20,33 @@
     </header>
     <!-- MAIN -->
     <main class="">
-      <!-- FORM (input to-do tasks) -->
-      <form class="">
-        <input type="" placeholder="Task Title" />
-        <input type="" placeholder="Description" />
-        <input type="" placeholder="Due Date" />
-        <button>Add</button>
+      <!-- Start ToDO FORM (input to-do tasks) -->
+      <form class="todo-form">
+        <div class="todo-form-row">
+          <div class="todo-form-column form-col-left">
+            <label for="task">Task Title</label>
+            <input type="text" id="task" placeholder="Task Title" />
+          </div>
+          <div class="todo-form-column form-col-right">
+            <label for="dueDate">Due-Date</label>
+            <input type="date" placeholder="Due Date" />
+          </div>
+        </div>
+        <div class="todo-form-row">
+          <div class="todo-form-column form-col-left">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              placeholder="Description"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="todo-form-column form-col-right form-button-position">
+            <button id="button" class="button-add-task">Add Task</button>
+          </div>
+        </div>
       </form>
-      <!-- END FORM -->
+      <!-- END ToDO FORM -->
       <!-- SECTION-1 (to-do-cards) -->
       <section class="">
         <header><h3>ToDo</h3></header>

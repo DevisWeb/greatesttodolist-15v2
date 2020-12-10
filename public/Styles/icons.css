@@ -1,0 +1,5 @@
+.fa-trash-alt,
+.fa-edit,
+.fa-check {
+  pointer-events: none;
+}

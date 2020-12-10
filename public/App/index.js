@@ -1,4 +1,5 @@
-// ** DOM SELECTORS *****************
+// ** DOM SELECTORS ***********************************************************************************
+
 const todoInputTitle = document.querySelector("#form-task-title");
 const todoInputDesc = document.querySelector("#form-task-description");
 const todoInputDue = document.querySelector("#form-task-duedate");
@@ -7,33 +8,50 @@ const todoButton = document.querySelector(".button-add-task");
 const todoList = document.querySelector(".task-container");
 const doneList = document.querySelector(".task-container-done");
 
-// *** EVENT LISTENERS **************
+const iconFas = document.getElementsByTagName("i"); // sb-del
+
+// *** EVENT LISTENERS ********************************************************************************
+
 // --> listen on what user clicks --> execute according function
 todoButton.addEventListener("click", addTodoCard); // execute funtion addToDoCard
-// execute function deleteAndCheck
-// --> listen to whole task-container to add funcionality based on what is clicked
-todoList.addEventListener("click", deleteAndCheck);
 
-// *** FUNCTIONS ********************
+// --> listen to whole task-container --> add funcionality based on what is clicked
+todoList.addEventListener("click", deleteAndCheck); // execute funtion deleteAndCheck + further function
+
+// *** FUNCTIONS **************************************************************************************
+
+// DELETE or CHECK MARK Task
+// Grab specific item we are clicking on --> execute function based on targeted clickItem
 function deleteAndCheck(e) {
-  // console.log(e.target); // test if listens on differnt clicks to whole container
-  // --> grab specific item we are clicking on:
   const clickItem = e.target;
-  // DELETE DIV.TASK-CARD (= targeted task clicked to be deleted)
+  // console.log(e.target); // test if listens on differnt clicks to whole container
+
+  // --> DELETE DIV.TASK-CARD (= targeted task clicked to be deleted)
   if (clickItem.classList[0] === "task-delete") {
-    // remove whole div.task-card = highest parent of item clicked
-    const taskChoosen = clickItem.parentElement.parentElement.parentElement;
-    taskChoosen.remove();
+    eventDeleteTask(e, clickItem); // execute function eventDeleteTask
   }
-  if (clickItem.classList[0] === "task-complete") {
-    // CHECK MARK TASK
-    const taskChoosen = clickItem.parentElement.parentElement.parentElement;
-    //console.log(taskChoosen.classList[1]);        // all fine
-    //taskChoosen.classList[1].toggle("task-done"); // not working
-    taskChoosen.classList.remove("task-todo");
-    taskChoosen.classList.add("task-done"); // quick workaround for changing class
-    console.log(taskChoosen.classList[1]);
+  // --> CHECK MARK TASK
+  if (
+    clickItem.classList[0] === "task-complete" ||
+    clickItem.classList[0] === "task-uncomplete"
+  ) {
+    eventCheckMarkTask(e, clickItem); // execute function eventCheckMarkTask
   }
+}
+
+// execute DELETE a TASK
+function eventDeleteTask(e, clickItem) {
+  const taskChoosen = clickItem.parentElement.parentElement.parentElement;
+  taskChoosen.remove();
+}
+
+// execute CHECK MARK a TASK | (clickItem = e.target)
+function eventCheckMarkTask(e, clickItem) {
+  const taskChoosen = clickItem.parentElement.parentElement.parentElement;
+  clickItem.classList.toggle("task-uncomplete");
+  taskChoosen.classList.toggle("task-done");
+  clickItem.firstChild.classList.toggle("fa-times");
+  clickItem.parentElement.classList.toggle("task-controls-done");
 }
 
 function addTodoCard(event) {
@@ -49,7 +67,7 @@ function addTodoCard(event) {
   const newTodoContent = document.createElement("div");
   newTodoContent.classList.add("task-content");
   newTodoContent.classList.add("vertical");
-  todoDiv.appendChild(newTodoContent); // grab parent todoDiv -> append child newTodoContent
+  todoDiv.appendChild(newTodoContent); // grab parent todoDiv -> append child newTodoContent to it
 
   // ---- < inner-elements of div.task-content:
   // = < < < CREATE i-inner element h2.task-title
@@ -60,7 +78,7 @@ function addTodoCard(event) {
   // = < < < CREATE i-inner element p.task-description
   const newTodoDescription = document.createElement("p");
   newTodoDescription.classList.add("task-description");
-  newTodoDescription.innerText = todoInputDesc.value; // test: "Task blabla important stuff description";
+  newTodoDescription.innerText = todoInputDesc.value; // test: "Task description";
   newTodoContent.appendChild(newTodoDescription);
   // = < < < CREATE i-inner element p.task-duedate
   const newTodoDue = document.createElement("p");

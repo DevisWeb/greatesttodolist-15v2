@@ -25,6 +25,15 @@ function deleteAndCheck(e) {
     const taskChoosen = clickItem.parentElement.parentElement.parentElement;
     taskChoosen.remove();
   }
+  if (clickItem.classList[0] === "task-complete") {
+    // CHECK MARK TASK
+    const taskChoosen = clickItem.parentElement.parentElement.parentElement;
+    //console.log(taskChoosen.classList[1]);        // all fine
+    //taskChoosen.classList[1].toggle("task-done"); // not working
+    taskChoosen.classList.remove("task-todo");
+    taskChoosen.classList.add("task-done"); // quick workaround for changing class
+    console.log(taskChoosen.classList[1]);
+  }
 }
 
 function addTodoCard(event) {

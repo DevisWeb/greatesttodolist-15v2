@@ -33,7 +33,7 @@
         <form class="todo-form">
           <div class="todo-form-row">
             <div class="todo-form-column form-col-left">
-              <label for="task">Task Title</label>
+              <label for="form-task-title">Task Title</label>
               <input
                 type="text"
                 id="form-task-title"
@@ -41,7 +41,7 @@
               />
             </div>
             <div class="todo-form-column form-col-right">
-              <label for="dueDate">Due-Date</label>
+              <label for="form-task-duedate">Due-Date</label>
               <input
                 type="date"
                 id="form-task-duedate"
@@ -51,7 +51,7 @@
           </div>
           <div class="todo-form-row">
             <div class="todo-form-column form-col-left">
-              <label for="description">Description</label>
+              <label for="form-task-description">Description</label>
               <textarea
                 id="form-task-description"
                 placeholder="Description"
@@ -67,6 +67,7 @@
         <!-- SECTION-1 (to-do-cards) -->
         <section class="horizontal cards-view">
           <div class="task-container horizontal">
+            <!--
             <div class="task-card task-todo">
               <div class="task-content vertical">
                 <h2 class="task-title">Task title</h2>
@@ -86,9 +87,12 @@
                   </a>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
-          <div class="task-container horizontal">
+          <!-- END task-container horizontal -->
+
+          <!--<div class="task-container horizontal">-->
+          <div class="task-container horizontal task-container-done">
             <div class="task-card task-done">
               <div class="task-content vertical">
                 <h2 class="task-title">Task title</h2>
@@ -116,5 +120,6 @@
       <!-- FOOTER -->
       <footer class=""></footer>
     </div>
+    <script src="./public/App/index.js"></script>
   </body>
 </html>

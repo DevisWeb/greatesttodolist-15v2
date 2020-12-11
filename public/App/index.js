@@ -17,41 +17,62 @@ todoButton.addEventListener("click", addTodoCard); // execute funtion addToDoCar
 
 // --> listen to whole task-container --> add funcionality based on what is clicked
 todoList.addEventListener("click", deleteAndCheck); // execute funtion deleteAndCheck + further function
-
+doneList.addEventListener("click", deleteAndCheck); // important for actions on click in second container for done tasks!
 // *** FUNCTIONS **************************************************************************************
 
 // DELETE or CHECK MARK Task
 // Grab specific item we are clicking on --> execute function based on targeted clickItem
 function deleteAndCheck(e) {
   const clickItem = e.target;
+  const taskChoosen = clickItem.parentElement.parentElement.parentElement;
   // console.log(e.target); // test if listens on differnt clicks to whole container
 
   // --> DELETE DIV.TASK-CARD (= targeted task clicked to be deleted)
   if (clickItem.classList[0] === "task-delete") {
-    eventDeleteTask(e, clickItem); // execute function eventDeleteTask
+    eventDeleteTask(e, taskChoosen); // execute function eventDeleteTask
   }
   // --> CHECK MARK TASK
   if (
-    clickItem.classList[0] === "task-complete" ||
-    clickItem.classList[0] === "task-uncomplete"
+    clickItem.classList.contains("task-complete") ||
+    clickItem.classList.contains("task-uncomplete")
   ) {
-    eventCheckMarkTask(e, clickItem); // execute function eventCheckMarkTask
+    console.log(clickItem.classList[0]);
+    console.log(clickItem.classList[1]);
+
+    console.log(clickItem.firstChild.classList[1]);
+    eventCheckMarkTask(e, taskChoosen, clickItem); // execute function eventCheckMarkTask
+    moveTodoCard(e, taskChoosen);
   }
 }
 
 // execute DELETE a TASK
-function eventDeleteTask(e, clickItem) {
-  const taskChoosen = clickItem.parentElement.parentElement.parentElement;
+function eventDeleteTask(e, taskChoosen) {
   taskChoosen.remove();
 }
 
 // execute CHECK MARK a TASK | (clickItem = e.target)
-function eventCheckMarkTask(e, clickItem) {
-  const taskChoosen = clickItem.parentElement.parentElement.parentElement;
+function eventCheckMarkTask(e, taskChoosen, clickItem) {
   clickItem.classList.toggle("task-uncomplete");
   taskChoosen.classList.toggle("task-done");
   clickItem.firstChild.classList.toggle("fa-times");
   clickItem.parentElement.classList.toggle("task-controls-done");
+  // moveTodoCard(e, taskChoosen);
+}
+
+// execute MOVE a TASK between div-task-container: todo <--> undone
+function moveTodoCard(e, taskChoosen) {
+  if (taskChoosen.parentElement.classList.contains("task-container-done")) {
+    alert(
+      "Are you sure we're still not done?\nSo we' ll code the whole damn night again, won't we?\nShould think about creating a SleepDeptCalculator... \n;-)"
+    );
+    todoList.appendChild(taskChoosen);
+  } else {
+    alert(
+      "YES! We did it. Now ready for eatin a big family-pizza with extra of everything and grab some beer!"
+    );
+    // taskChoosen.remove();
+    doneList.appendChild(taskChoosen);
+  }
 }
 
 function addTodoCard(event) {
@@ -121,3 +142,7 @@ function addTodoCard(event) {
   todoInputDesc.value = "";
   todoInputDue.value = "";
 }
+
+// sb-ToDo:
+// * OutSource Functions
+// * Add Animation

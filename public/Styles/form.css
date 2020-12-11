@@ -6,12 +6,15 @@ colors:
 #f0544f salmon rgb(240,84,79) 
 #faf4d3 creme rgb(250,244,211)
 */
+body {
+  background: rgba(240, 84, 79, 0.3);
+}
 .todo-form {
   margin: 3vh auto;
   padding: 0.4rem;
   border: 1px solid black;
   background: rgba(250, 244, 211, 0.7);
-  font-size: 1rem;
+  font-size: 1.4rem;
   overflow: hidden;
 }
 .todo-form-row {
@@ -40,7 +43,7 @@ colors:
 }
 
 .todo-form label {
-  flex: 1;
+  flex: 1; /* sb-check 3r */
   font-weight: 700;
   display: flex;
   color: rgba(0, 0, 0, 0.7);
@@ -51,10 +54,10 @@ colors:
   flex: 4;
   margin: 0.3rem;
   max-width: 90%;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   background: rgba(96, 153, 45, 0.2); /* #60992d; */
   border: 1px solid rgba(240, 84, 79, 0.8);
-  color: rgba(78, 75, 75, 0.3);
+  color: rgba(78, 75, 75, 0.9);
   padding: 0.1rem 0.3rem;
   border-radius: 0.2rem;
 }
@@ -72,8 +75,7 @@ colors:
 }
 
 .button-add-task {
-  height: 2.5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-align: center;
   background: rgba(240, 84, 79, 0.8);
   color: white;

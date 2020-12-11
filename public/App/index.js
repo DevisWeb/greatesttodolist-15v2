@@ -59,7 +59,7 @@ function eventCheckMarkTask(e, taskChoosen, clickItem) {
   // moveTodoCard(e, taskChoosen);
 }
 
-// execute MOVE a TASK between div-task-container: todo <--> undone
+// execute MOVE a TASK between div-task-container: todo <--> done
 function moveTodoCard(e, taskChoosen) {
   if (taskChoosen.parentElement.classList.contains("task-container-done")) {
     alert(

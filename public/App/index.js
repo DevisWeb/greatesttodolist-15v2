@@ -16,33 +16,41 @@ const iconFas = document.getElementsByTagName("i"); // sb-del
 todoButton.addEventListener("click", addTodoCard); // execute funtion addToDoCard
 
 // --> listen to whole task-container --> add funcionality based on what is clicked
-todoList.addEventListener("click", deleteAndCheck); // execute funtion deleteAndCheck + further function
-doneList.addEventListener("click", deleteAndCheck); // important for actions on click in second container for done tasks!
+todoList.addEventListener("click", deleteCheckEdit); // execute funtion deleteCheckEdit + further function
+doneList.addEventListener("click", deleteCheckEdit); // important for actions on click in second container for done tasks!
 
 // *** FUNCTIONS **************************************************************************************
 
-// *** DELETE or CHECK MARK Task
+// *** DELETE, EDIT or CHECK MARK Task
 // Grab specific item we are clicking on --> execute function based on targeted clickItem
-function deleteAndCheck(e) {
+function deleteCheckEdit(e) {
   const clickItem = e.target;
   const taskChoosen = clickItem.parentElement.parentElement.parentElement;
   // console.log(e.target); // test if listens on differnt clicks to whole container
 
-  // --> DELETE DIV.TASK-CARD (= targeted task clicked to be deleted)
-  if (clickItem.classList[0] === "task-delete") {
+  // --> DELETE DIV.TASK-CARD (= targeted task clicked to be deleted):
+  if (clickItem.classList.contains("task-delete")) {
     eventDeleteTask(e, taskChoosen); // execute function eventDeleteTask
   }
-  // --> CHECK MARK TASK
+  // --> CHECK MARK TASK:
   if (
     clickItem.classList.contains("task-complete") ||
     clickItem.classList.contains("task-uncomplete")
   ) {
-    moveTodoCard(e, taskChoosen);
-    eventCheckMarkTask(e, taskChoosen, clickItem); // execute function eventCheckMarkTask
+    moveTodoCard(e, taskChoosen); // moves card to other container (todoList or doneList)
+    eventCheckMarkTask(e, taskChoosen, clickItem); // toggle classes to change styles and icon
+    hideShowElement(taskChoosen); // removes class .enableEditing to hide input-fields
   }
   // --> EDIT DIV.TASK-CARD content
   if (clickItem.classList.contains("task-edit")) {
-    editTodoCard(e, taskChoosen, clickItem);
+    console.log(taskChoosen.classList); // class status before
+
+    // toggle (.enableEditing) between read and edititing whole card:
+    // --> this class controls display(block/none) of fields in task_cards.css
+    taskChoosen.classList.toggle("enableEditing");
+    console.log(taskChoosen.classList); // class status after
+
+    editTodoCard(e, taskChoosen);
   }
 }
 
@@ -74,51 +82,52 @@ function moveTodoCard(e, taskChoosen) {
     alert(
       "YES! We did it. Now ready for eatin a big family-pizza with extra of everything and grab some beer!"
     );
-    // taskChoosen.remove();
     doneList.appendChild(taskChoosen);
   }
 }
 
-function editTodoCard(e, taskChoosen, clickItem) {
-  console.log("clicked EditToDoCard --> now edit or save mode ");
-  // chooseItem clicked = this.parent
-  const editTodoInputEnabled = taskChoosen.querySelector("input[type=text]");
-  const labelTodoTitle = taskChoosen.querySelector("h2");
-  const labelTodoDesc = taskChoosen.querySelector("p");
-  const isClassEdit = clickItem.firstChild.classList.contains("fa-edit");
-  //const isClassEdit = taskChoosen.classList.contains("enableEdit");
-  if (isClassEdit) {
-    // show input field that contains the former label text to be changed
-    editTodoInputEnabled.value = labelTodoTitle.innerText;
-    console.log("Input gets text from label --> text can now be edited");
+// *** execute EDIT a TASK Card (calls function 'hideShowElement')  // sb-todo: label/input values -> array
+function editTodoCard(e, taskChoosen) {
+  console.log(
+    "clicked edit icon\n --> executes function editToDoCard\n --> enable editing or 'save' text changes"
+  );
+  // define input-fields:
+  const InputEnabledTitle = taskChoosen.querySelector("#enableInputTitle");
+  const InputEnabledDesc = taskChoosen.querySelector("#enableInputDesc");
+  const InputEnabledDue = taskChoosen.querySelector("#enableInputDue");
+  // define labels to pass label-text to input-fields:
+  const labelTodoTitle = taskChoosen.querySelector(".task-title");
+  const labelTodoDesc = taskChoosen.querySelector(".task-description");
+  const labelTodoDue = taskChoosen.querySelector(".task-duedate");
+
+  // console.log(taskChoosen.classList);
+  if (taskChoosen.classList.contains("enableEditing")) {
+    // show input field that now contains the former label text for editing
+    InputEnabledTitle.value = labelTodoTitle.innerText;
+    InputEnabledDesc.value = labelTodoDesc.innerText;
+    InputEnabledDue.value = labelTodoDue.innerText;
+    console.log(
+      " Input-fields get text from labels\n --> text can now be edited"
+    );
   } else {
     // turn to .fa-edit, pass value to input
-    labelTodoTitle.innerText = editTodoInputEnabled.value;
+    labelTodoTitle.innerText = InputEnabledTitle.value;
+    labelTodoDesc.innerText = InputEnabledDesc.value;
+    labelTodoDue.innerText = InputEnabledDue.value;
     console.log(
-      " 1) label gets text from Input;\n 2) input field should hide;\n 3) icon shows class .fa-edit to enter the editing mode again; "
+      " 1) labels get text from Input-fields;\n 2) input fields should hide"
     );
   }
-  console.log(editTodoInputEnabled.style);
-  // toogling between read and editstatus
-  console.log(clickItem.firstChild.classList); // class status before
-
-  clickItem.firstChild.classList.toggle("fa-edit");
-
-  console.log(clickItem.firstChild.classList); // after
-
-  // call function to HIDE or SHOW INPUT field
-  hideShowElement(editTodoInputEnabled, isClassEdit);
 }
 
-function hideShowElement(editTodoInputEnabled, isClassEdit) {
-  if (!isClassEdit) {
-    console.log("HIDE Input");
-    editTodoInputEnabled.style.display = "none";
-  } else {
-    console.log("SHOW Input");
-    editTodoInputEnabled.style.display = "block";
+// This function NOW removes class .enableEditing to hide input-fields when task are checked
+// general hide/show label/input fields (display block/none) is now controlled in tasc-cards.css
+function hideShowElement(taskChoosen) {
+  console.log("function hideShowElement called:");
+  if (taskChoosen.classList.contains("task-done")) {
+    console.log(" --> SHOW Input fields");
+    taskChoosen.classList.remove("enableEditing");
   }
-  //console.log("hide show not working");
 }
 
 // ** STORE todoLocal **************************************************
@@ -151,8 +160,10 @@ function addTodoCard(event) {
   // = < < < create INPUT FIELD for title
   const enableTodoInputField = document.createElement("input");
   enableTodoInputField.type = "text";
+  enableTodoInputField.placeholder = "Title";
+  enableTodoInputField.setAttribute("id", "enableInputTitle"); // set I D
   newTodoContent.appendChild(enableTodoInputField);
-  enableTodoInputField.style.display = "none";
+
   // = < < < CREATE i-inner element p.task-description
   const newTodoDescription = document.createElement("p");
   newTodoDescription.classList.add("task-description");
@@ -161,8 +172,10 @@ function addTodoCard(event) {
   // = < < < create INPUT FIELD for description
   const enableTodoInputFieldDesc = document.createElement("input");
   enableTodoInputFieldDesc.type = "text";
+  enableTodoInputFieldDesc.placeholder = "Description";
+  enableTodoInputFieldDesc.setAttribute("id", "enableInputDesc"); // set I D
   newTodoContent.appendChild(enableTodoInputFieldDesc);
-  enableTodoInputFieldDesc.style.display = "none"; // block
+
   // = < < < CREATE i-inner element p.task-duedate
   const newTodoDue = document.createElement("p");
   newTodoDue.classList.add("task-duedate");
@@ -171,8 +184,10 @@ function addTodoCard(event) {
   // = < < < create INPUT FIELD for dueDate
   const enableTodoInputFieldDue = document.createElement("input");
   enableTodoInputFieldDue.type = "date";
+  enableTodoInputFieldDue.placeholder = "DueDate";
+  enableTodoInputFieldDue.setAttribute("id", "enableInputDue"); // set I D
   newTodoContent.appendChild(enableTodoInputFieldDue);
-  enableTodoInputFieldDue.style.display = "none"; // block
+
   // = < < < CREATE i-inner div."horizontal task-controls task-controls-todo"
   const newTodoControls = document.createElement("div");
   newTodoControls.classList.add("horizontal");
@@ -211,7 +226,6 @@ function addTodoCard(event) {
 }
 
 // sb-ToDo:
-// * Complete Edit Card Functionality
 // * Add data storage
 // * OutSource Functions
 // * Add Animation for re/moving Card

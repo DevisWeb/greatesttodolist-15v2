@@ -92,3 +92,26 @@
   border-radius: 0.25em;
   color: white;
 }
+
+/* Control option for editing task-Card when .enableEditing is toggling in function 'editTodoCard' */
+
+/* no input-fields available */
+.task-card input[type="text"],
+.task-card input[type="date"] {
+  display: none;
+}
+
+/* .enableEditing is active: --> show input-fields for editing */
+.task-card.enableEditing h2,
+.task-card.enableEditing p {
+  display: none;
+}
+.task-card.enableEditing input[type="text"],
+.task-card.enableEditing input[type="date"] {
+  display: block;
+}
+
+/* as long as task is inside task-container-done, edit-icon is not available */
+.task-container-done .task-edit {
+  display: none;
+}

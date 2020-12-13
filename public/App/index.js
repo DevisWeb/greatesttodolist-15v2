@@ -138,7 +138,18 @@ function storeTodoLocal(taskChoosen) {
 // *** ADD TodoCard ****************************************************
 function addTodoCard(event) {
   event.preventDefault(); // prevent form from submitting/reload
-
+  if (todoInputTitle.value == "") {
+    alert("Please add a title for your task");
+    return;
+  }
+  if (todoInputDesc.value == "") {
+    alert("Please add a Description for your task");
+    return;
+  }
+  if (todoInputDue.value == "") {
+    alert("Please add a DueDate for your task");
+    return;
+  }
   // = < CREATE main DIV.TASK-CARD+task-todo in the div.task-container
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("task-card"); // add class to div

@@ -1,6 +1,6 @@
 # GreatestToDoList - what else? :stuck_out_tongue_winking_eye:
 
-## WBS Coding School - Team-Project 3 (week 3+4)
+WBS Coding School - Team-Project 3 (week 3+4)
 
 > Main goals while working with git and github in a remote team:
 >
@@ -12,21 +12,20 @@
 
 ### Table of Contents
 
-- [Overview](#project-overview)
+- [Overview](#project-overview---requirements)
 - [Checklist](#checklist)
 - [Challenges](#challenges)
-- [Resources](#used-resources)
+- [Resources](#resources)
 
 ---
 
-## Project Overview - Requirements
+# Project Overview - Requirements
 
 **Level 1: CRUD operations - Create a Todolist where user can:**
 
 - [x] Add a ToDo
 - [x] Mark ToDo as Done
-- [x] Edit a ToDo - Title
-- [ ] Edit ToDo Description + DueDate - in progress
+- [x] Edit a ToDo
 - [x] Delete a ToDo
 
 **Level 2: Create classes for Todo / TodoList**
@@ -36,8 +35,8 @@
 
 **Level 3 - (optional) Transform into React components for Todo / TodoList**
 
-- [ ] Choose either arrow function programming / Class Definitions
-- [ ] All of methods / properties should be set into components
+- Choose either arrow function programming / Class Definitions
+- All of methods / properties should be set into components
 
 ### Technologies & Tools that should be used
 
@@ -52,22 +51,43 @@
 | Trello                | :white_check_mark: |
 | Discord / Google Meet | :white_check_mark: |
 
-## Checklist
+# Checklist
 
 ### Steps for developing the project:
 
+#### Planning
+
 - [x] Wireframe
-- [x] set color palette
-- [x] frontend - first styling: form
-- [ ] add sth ...
+- [x] Project Tracking with Trello
+- [x] Set color palette
+- [x] Think about logic and functionalities (pseudocode)
+
+#### Frontend
+
+- [x] Add first markup and just a simple styling for a input form and a task list
+
+#### Add dynamic with JS
+
+- [x] transform pseudocode into JS
+- [ ] optional: Add local data storage
+
+#### Think OOP and let's REACT (week 2 of project)
+
+- [ ] Transform/Rebuild project with REACT
+
+# Challenges
+
+- Thinking about architecture and transform different ideas of a team into code
+- Teams will rotate to another teams project in week 2. Challenge:
+  - work with code and documention of other teams on a similar project
+  - see how and if another team is able to work with your project / documention
+  - therefore: projects need readable commits and well structured comments in the project code
 
 ---
 
-## Challenges
+(good place for a wiki-link in further projects)
 
-### here we will add a wiki-link (in further projects)
-
-## Resources
+# Resources
 
 - WBS Coding School Resources and links such as:
 - [w3schools.com: How TO - Create a To Do List](https://www.w3schools.com/howto/howto_js_todolist.asp)

@@ -1,17 +1,18 @@
 .task-container {
-  width: 48%;
-  height: 700px;
+  flex: 1 20rem;
+  height: 80vh;
   background-color: #004643;
   padding: 1em;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   overflow-y: auto;
   box-shadow: 0.5em 0.5em 0.5em lightgray;
 }
 
 .task-card {
-  width: 47%;
-  height: 400px;
+  flex: 1 15rem;
+  max-width: 15rem;
+  min-height: 30vh;
   margin: 0.4em;
   padding: 0.75em;
   box-shadow: 0.5em 0.5em 0.5em black;
@@ -26,22 +27,25 @@
 }
 
 .task-content {
-  width: 100%;
-  height: 100%;
+  width: 99%;
+  min-height: 30vh;
   padding: 0.75em;
   background-color: white;
   border-radius: 0.75em;
   justify-content: space-between;
+  overflow: hidden;
+  overflow-wrap: break-word;
 }
 
-.cards-view h2 {
+.cards-view h2,
+.cards-view p {
+  max-width: 98%;
   text-align: center;
-  margin-bottom: 1em;
+  margin: 0.5rem 0;
 }
 
 .cards-view p {
   font-size: 1.25em;
-  margin-bottom: 1em;
 }
 
 .task-duedate {
@@ -50,7 +54,8 @@
 
 .task-controls {
   width: 100%;
-  height: 50px;
+  min-height: 3rem;
+  padding: 0.1rem;
   border-radius: 0.5em;
   justify-content: space-around;
   align-content: center;
@@ -64,26 +69,29 @@
 .task-controls-done {
   background-color: rgba(96, 153, 45, 0.3);
 }
-
-.task-delete {
-  background-color: red;
+.task-delete,
+.task-edit,
+.task-complete {
+  display: flex;
+  flex: 1;
+  max-width: 27%;
+  height: 2.2rem;
   padding: 0.5em 1em;
   border-radius: 0.25em;
   color: white;
+  justify-content: center;
+}
+
+.task-delete {
+  background-color: red;
 }
 
 .task-edit {
   background-color: blue;
-  padding: 0.5em 1em;
-  border-radius: 0.25em;
-  color: white;
 }
 
 .task-complete {
   background-color: #60992d;
-  padding: 0.5em 1em;
-  border-radius: 0.25em;
-  color: white;
 }
 
 .task-uncomplete {
@@ -109,6 +117,7 @@
 .task-card.enableEditing input[type="text"],
 .task-card.enableEditing input[type="date"] {
   display: block;
+  max-width: 98%;
 }
 
 /* as long as task is inside task-container-done, edit-icon is not available */

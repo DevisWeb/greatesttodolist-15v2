@@ -23,15 +23,16 @@
 
 **Level 1: CRUD operations - Create a Todolist where user can:**
 
-- [ ] Add a ToDo
-- [ ] Mark ToDo as Done
-- [ ] Edit a ToDo
-- [ ] Delete a ToDo
+- [x] Add a ToDo
+- [x] Mark ToDo as Done
+- [x] Edit a ToDo - Title
+- [ ] Edit ToDo Description + DueDate - in progress
+- [x] Delete a ToDo
 
 **Level 2: Create classes for Todo / TodoList**
 
-- [ ] Think of the architecture
-- [ ] Code classes with properties and methods accordingly
+- Think of the architecture
+- Code classes with properties and methods accordingly
 
 **Level 3 - (optional) Transform into React components for Todo / TodoList**
 
@@ -46,7 +47,7 @@
 | CSS 3                 | :white_check_mark: |
 | JS ES6                | :white_check_mark: |
 | React                 |
-|  |
+|                       |
 | Github                | :white_check_mark: |
 | Trello                | :white_check_mark: |
 | Discord / Google Meet | :white_check_mark: |

@@ -110,7 +110,19 @@ function editTodoCard(e, taskChoosen) {
       " Input-fields get text from labels\n --> text can now be edited"
     );
   } else {
-    // turn to .fa-edit, pass value to input
+    // Prevent from leaving fields blank when editing a task:
+    if (InputEnabledTitle.value == "") {
+      alert("Please add a Task Title for your task");
+      return;
+    }
+    if (InputEnabledDesc.value == "") {
+      alert("Please add a Description for your task");
+      return;
+    }
+    if (InputEnabledDue.value == "") {
+      alert("Please add a Due Date for your task");
+      return;
+    }
     labelTodoTitle.innerText = InputEnabledTitle.value;
     labelTodoDesc.innerText = InputEnabledDesc.value;
     labelTodoDue.innerText = InputEnabledDue.value;
@@ -138,7 +150,19 @@ function storeTodoLocal(taskChoosen) {
 // *** ADD TodoCard ****************************************************
 function addTodoCard(event) {
   event.preventDefault(); // prevent form from submitting/reload
-
+  // prevent form from submitting when fields are empty:
+  if (todoInputTitle.value == "") {
+    alert("Please add a Task Title for your task");
+    return;
+  }
+  if (todoInputDesc.value == "") {
+    alert("Please add a Description for your task");
+    return;
+  }
+  if (todoInputDue.value == "") {
+    alert("Please add a Due Date for your task");
+    return;
+  }
   // = < CREATE main DIV.TASK-CARD+task-todo in the div.task-container
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("task-card"); // add class to div
@@ -162,6 +186,7 @@ function addTodoCard(event) {
   enableTodoInputField.type = "text";
   enableTodoInputField.placeholder = "Title";
   enableTodoInputField.setAttribute("id", "enableInputTitle"); // set I D
+  enableTodoInputField.setAttribute("maxlength", "100");
   newTodoContent.appendChild(enableTodoInputField);
 
   // = < < < CREATE i-inner element p.task-description
@@ -170,10 +195,11 @@ function addTodoCard(event) {
   newTodoDescription.innerText = todoInputDesc.value; // test: "Task description";
   newTodoContent.appendChild(newTodoDescription);
   // = < < < create INPUT FIELD for description
-  const enableTodoInputFieldDesc = document.createElement("input");
-  enableTodoInputFieldDesc.type = "text";
+  const enableTodoInputFieldDesc = document.createElement("textarea");
   enableTodoInputFieldDesc.placeholder = "Description";
   enableTodoInputFieldDesc.setAttribute("id", "enableInputDesc"); // set I D
+  enableTodoInputFieldDesc.setAttribute("maxlength", "500");
+  enableTodoInputFieldDesc.setAttribute("rows", "5");
   newTodoContent.appendChild(enableTodoInputFieldDesc);
 
   // = < < < CREATE i-inner element p.task-duedate

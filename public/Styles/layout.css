@@ -4,7 +4,9 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-
+html {
+  font-size: 62.5%; /* sb-add */
+}
 body {
   margin-top: 3em;
   display: flex;
@@ -19,9 +21,12 @@ header {
   text-shadow: 2px 2px 6px gray;
 }
 
+a {
+  text-decoration: none;
+}
+
 .content {
   width: 70%;
-  min-width: 480px;
   max-width: 1200px;
 }
 
@@ -39,4 +44,7 @@ header {
 .cards-view {
   justify-content: space-between;
   margin-top: 3em;
+  flex: 1 100%;
+  columns: 2;
+  gap: 1rem;
 }

@@ -110,7 +110,19 @@ function editTodoCard(e, taskChoosen) {
       " Input-fields get text from labels\n --> text can now be edited"
     );
   } else {
-    // turn to .fa-edit, pass value to input
+    // Prevent from leaving fields blank when editing a task:
+    if (InputEnabledTitle.value == "") {
+      alert("Please add a Task Title for your task");
+      return;
+    }
+    if (InputEnabledDesc.value == "") {
+      alert("Please add a Description for your task");
+      return;
+    }
+    if (InputEnabledDue.value == "") {
+      alert("Please add a Due Date for your task");
+      return;
+    }
     labelTodoTitle.innerText = InputEnabledTitle.value;
     labelTodoDesc.innerText = InputEnabledDesc.value;
     labelTodoDue.innerText = InputEnabledDue.value;
@@ -138,8 +150,9 @@ function storeTodoLocal(taskChoosen) {
 // *** ADD TodoCard ****************************************************
 function addTodoCard(event) {
   event.preventDefault(); // prevent form from submitting/reload
+  // prevent form from submitting when fields are empty:
   if (todoInputTitle.value == "") {
-    alert("Please add a title for your task");
+    alert("Please add a Task Title for your task");
     return;
   }
   if (todoInputDesc.value == "") {
@@ -147,7 +160,7 @@ function addTodoCard(event) {
     return;
   }
   if (todoInputDue.value == "") {
-    alert("Please add a DueDate for your task");
+    alert("Please add a Due Date for your task");
     return;
   }
   // = < CREATE main DIV.TASK-CARD+task-todo in the div.task-container

@@ -162,6 +162,7 @@ function addTodoCard(event) {
   enableTodoInputField.type = "text";
   enableTodoInputField.placeholder = "Title";
   enableTodoInputField.setAttribute("id", "enableInputTitle"); // set I D
+  enableTodoInputField.setAttribute("maxlength", "100");
   newTodoContent.appendChild(enableTodoInputField);
 
   // = < < < CREATE i-inner element p.task-description
@@ -170,10 +171,11 @@ function addTodoCard(event) {
   newTodoDescription.innerText = todoInputDesc.value; // test: "Task description";
   newTodoContent.appendChild(newTodoDescription);
   // = < < < create INPUT FIELD for description
-  const enableTodoInputFieldDesc = document.createElement("input");
-  enableTodoInputFieldDesc.type = "text";
+  const enableTodoInputFieldDesc = document.createElement("textarea");
   enableTodoInputFieldDesc.placeholder = "Description";
   enableTodoInputFieldDesc.setAttribute("id", "enableInputDesc"); // set I D
+  enableTodoInputFieldDesc.setAttribute("maxlength", "500");
+  enableTodoInputFieldDesc.setAttribute("rows", "5");
   newTodoContent.appendChild(enableTodoInputFieldDesc);
 
   // = < < < CREATE i-inner element p.task-duedate

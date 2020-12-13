@@ -12,7 +12,6 @@
 .task-card {
   flex: 1 15rem;
   max-width: 15rem;
-  min-height: 30vh;
   margin: 0.4em;
   padding: 0.75em;
   box-shadow: 0.5em 0.5em 0.5em black;
@@ -28,7 +27,7 @@
 
 .task-content {
   width: 99%;
-  min-height: 30vh;
+  min-height: 50vh;
   padding: 0.75em;
   background-color: white;
   border-radius: 0.75em;
@@ -104,6 +103,7 @@
 /* Control option for editing task-Card when .enableEditing is toggling in function 'editTodoCard' */
 
 /* no input-fields available */
+.task-card textarea,
 .task-card input[type="text"],
 .task-card input[type="date"] {
   display: none;
@@ -114,6 +114,7 @@
 .task-card.enableEditing p {
   display: none;
 }
+.task-card.enableEditing textarea,
 .task-card.enableEditing input[type="text"],
 .task-card.enableEditing input[type="date"] {
   display: block;

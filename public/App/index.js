@@ -92,9 +92,9 @@ function editTodoCard(e, taskChoosen) {
     "clicked edit icon\n --> executes function editToDoCard\n --> enable editing or 'save' text changes"
   );
   // define input-fields:
-  const InputEnabledTitle = taskChoosen.querySelector("#enableInputTitle");
-  const InputEnabledDesc = taskChoosen.querySelector("#enableInputDesc");
-  const InputEnabledDue = taskChoosen.querySelector("#enableInputDue");
+  const inputEnabledTitle = taskChoosen.querySelector("#enableInputTitle");
+  const inputEnabledDesc = taskChoosen.querySelector("#enableInputDesc");
+  const inputEnabledDue = taskChoosen.querySelector("#enableInputDue");
   // define labels to pass label-text to input-fields:
   const labelTodoTitle = taskChoosen.querySelector(".task-title");
   const labelTodoDesc = taskChoosen.querySelector(".task-description");
@@ -103,29 +103,29 @@ function editTodoCard(e, taskChoosen) {
   // console.log(taskChoosen.classList);
   if (taskChoosen.classList.contains("enableEditing")) {
     // show input field that now contains the former label text for editing
-    InputEnabledTitle.value = labelTodoTitle.innerText;
-    InputEnabledDesc.value = labelTodoDesc.innerText;
-    InputEnabledDue.value = labelTodoDue.innerText;
+    inputEnabledTitle.value = labelTodoTitle.innerText;
+    inputEnabledDesc.value = labelTodoDesc.innerText;
+    inputEnabledDue.value = labelTodoDue.innerText;
     console.log(
       " Input-fields get text from labels\n --> text can now be edited"
     );
   } else {
     // Prevent from leaving fields blank when editing a task:
-    if (InputEnabledTitle.value == "") {
+    if (inputEnabledTitle.value == "") {
       alert("Please add a Task Title for your task");
       return;
     }
-    if (InputEnabledDesc.value == "") {
+    if (inputEnabledDesc.value == "") {
       alert("Please add a Description for your task");
       return;
     }
-    if (InputEnabledDue.value == "") {
+    if (inputEnabledDue.value == "") {
       alert("Please add a Due Date for your task");
       return;
     }
-    labelTodoTitle.innerText = InputEnabledTitle.value;
-    labelTodoDesc.innerText = InputEnabledDesc.value;
-    labelTodoDue.innerText = InputEnabledDue.value;
+    labelTodoTitle.innerText = inputEnabledTitle.value;
+    labelTodoDesc.innerText = inputEnabledDesc.value;
+    labelTodoDue.innerText = inputEnabledDue.value;
     console.log(
       " 1) labels get text from Input-fields;\n 2) input fields should hide"
     );
@@ -251,10 +251,10 @@ function addTodoCard(event) {
   todoInputDue.value = "";
 }
 
-// sb-ToDo:
+// optional ToDo:
 // * Add data storage
 // * OutSource Functions
+
 // * Add Animation for re/moving Card
 // * Add tooltips to icons
-// * Add required inputs
 // * Add filter with switch for e.target --> status of task

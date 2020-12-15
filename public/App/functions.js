@@ -1,6 +1,6 @@
 // This function CREATES a task Card,
 // that can be appended to a list (task-container) for done/undone tasks
-function createTodoCard() {
+function createTodoCard(title, description, dueDate) {
   // = < CREATE main DIV.TASK-CARD+task-todo in the div.task-container
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("task-card"); // add class to div
@@ -17,7 +17,7 @@ function createTodoCard() {
   // = < < < CREATE i-inner element h2.task-title
   const newTodoTitle = document.createElement("h2");
   newTodoTitle.classList.add("task-title");
-  newTodoTitle.innerText = todoInputTitle.value; // test: "Your Task Title - Do it";
+  newTodoTitle.innerText = title.value; // test: "Your Task Title - Do it";
   newTodoContent.appendChild(newTodoTitle); // append to inner div.task-content
   // = < < < create INPUT FIELD for title
   const enableTodoInputField = document.createElement("input");
@@ -30,7 +30,7 @@ function createTodoCard() {
   // = < < < CREATE i-inner element p.task-description
   const newTodoDescription = document.createElement("p");
   newTodoDescription.classList.add("task-description");
-  newTodoDescription.innerText = todoInputDesc.value; // test: "Task description";
+  newTodoDescription.innerText = description.value; // test: "Task description";
   newTodoContent.appendChild(newTodoDescription);
   // = < < < create INPUT FIELD for description
   const enableTodoInputFieldDesc = document.createElement("textarea");
@@ -43,7 +43,7 @@ function createTodoCard() {
   // = < < < CREATE i-inner element p.task-duedate
   const newTodoDue = document.createElement("p");
   newTodoDue.classList.add("task-duedate");
-  newTodoDue.innerText = todoInputDue.value; // test: "2020-12-18";
+  newTodoDue.innerText = dueDate.value; // test: "2020-12-18";
   newTodoContent.appendChild(newTodoDue);
   // = < < < create INPUT FIELD for dueDate
   const enableTodoInputFieldDue = document.createElement("input");
@@ -79,4 +79,16 @@ function createTodoCard() {
   completeBtn.innerHTML = '<i class="fas fa-check"></i>';
   newTodoControls.appendChild(completeBtn);
   return todoDiv;
+}
+
+function isEmpty(title, description, dueDate) {
+  if (title.value == "") {
+    alert("Please add a Title for your task");
+  }
+  if (description.value == "") {
+    alert("Please add a Description for your task");
+  }
+  if (dueDate.value == "") {
+    alert("Please add a Due Date for your task");
+  }
 }

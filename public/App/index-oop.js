@@ -28,6 +28,12 @@ class TaskList {
       createTodoCard(task._title, task._description, task._dueDate)
     ); // todoList.appendChild(todoDiv);
   }
+  static clearForm() {
+    // note1 *: passing as variables did not work --> select directly works
+    document.querySelector("#form-task-title").value = "";
+    document.querySelector("#form-task-description").value = "";
+    document.querySelector("#form-task-duedate").value = "";
+  }
 }
 
 // ### Event-Handler: Add a new Task
@@ -56,7 +62,12 @@ function addTodoCard(event) {
   // Add new task to be displayed on todoList
   // with TaskList method addTaskToList, that creates a card calling 'createTodoCard':
   TaskList.addTaskToList(task);
+  // old: todoList.appendChild(createTodoCard(title, description, dueDate)); // todoList.appendChild(todoDiv);
 
-  // old:
-  // todoList.appendChild(createTodoCard(title, description, dueDate)); // todoList.appendChild(todoDiv);
+  // CLEAR Form Input.Values
+  TaskList.clearForm();
+  // * note1:
+  // TaskList.clearForm(title, description, dueDate); // sb-check
+  // passing variables did not work --> select elements directly in clearForm() works instead:
+  // ' document.querySelector("#form-task-title").value = ""; ' instead of ' title = ""; '
 }

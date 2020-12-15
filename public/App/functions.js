@@ -17,7 +17,7 @@ function createTodoCard(title, description, dueDate) {
   // = < < < CREATE i-inner element h2.task-title
   const newTodoTitle = document.createElement("h2");
   newTodoTitle.classList.add("task-title");
-  newTodoTitle.innerText = title.value; // test: "Your Task Title - Do it";
+  newTodoTitle.innerText = title; // test: "Your Task Title - Do it";
   newTodoContent.appendChild(newTodoTitle); // append to inner div.task-content
   // = < < < create INPUT FIELD for title
   const enableTodoInputField = document.createElement("input");
@@ -30,7 +30,7 @@ function createTodoCard(title, description, dueDate) {
   // = < < < CREATE i-inner element p.task-description
   const newTodoDescription = document.createElement("p");
   newTodoDescription.classList.add("task-description");
-  newTodoDescription.innerText = description.value; // test: "Task description";
+  newTodoDescription.innerText = description; // test: "Task description";
   newTodoContent.appendChild(newTodoDescription);
   // = < < < create INPUT FIELD for description
   const enableTodoInputFieldDesc = document.createElement("textarea");
@@ -43,7 +43,7 @@ function createTodoCard(title, description, dueDate) {
   // = < < < CREATE i-inner element p.task-duedate
   const newTodoDue = document.createElement("p");
   newTodoDue.classList.add("task-duedate");
-  newTodoDue.innerText = dueDate.value; // test: "2020-12-18";
+  newTodoDue.innerText = dueDate; // test: "2020-12-18";
   newTodoContent.appendChild(newTodoDue);
   // = < < < create INPUT FIELD for dueDate
   const enableTodoInputFieldDue = document.createElement("input");
@@ -82,13 +82,13 @@ function createTodoCard(title, description, dueDate) {
 }
 
 function isEmpty(title, description, dueDate) {
-  if (title.value == "") {
+  if (title == "") {
     alert("Please add a Title for your task");
   }
-  if (description.value == "") {
+  if (description == "") {
     alert("Please add a Description for your task");
   }
-  if (dueDate.value == "") {
+  if (dueDate == "") {
     alert("Please add a Due Date for your task");
   }
 }

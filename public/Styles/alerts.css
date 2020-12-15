@@ -1,0 +1,18 @@
+/* global class for all customAlerts */
+.custom-alert {
+  border: 1px solid black;
+  padding: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+}
+
+/* specify alert - styling based on case (event) */
+.alert-empty-fields {
+  background: white;
+  color: rgb(240, 84, 79);
+}
+.alert-success {
+  color: rgb(0, 70, 67);
+  background: rgba(96, 153, 45, 0.5);
+}

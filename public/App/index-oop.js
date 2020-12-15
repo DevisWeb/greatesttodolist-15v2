@@ -28,8 +28,30 @@ class TaskList {
       createTodoCard(task._title, task._description, task._dueDate)
     ); // todoList.appendChild(todoDiv);
   }
+  // Method - Display alert to prevent from submitting empty form
+  static displayCustomAlert(message, alertType) {
+    // construct alert element, create div
+    const div = document.createElement("div");
+    // Add class to style alert
+    div.classList.add("custom-alert", alertType);
+    div.innerText = message; // Add alert text passed by event clicked
+
+    // Select parent and where to display the customAlert
+    const mainContainer = document.querySelector("main");
+    const form = document.querySelector("#todo-form");
+    // display alert IN main BEFORE the form
+    // insertBefore takes 2 params: (what to insert (div), before what (form))
+    mainContainer.insertBefore(div, form);
+
+    // setTimeout for alert to disappear
+    setTimeout(function () {
+      document.querySelector(".custom-alert").remove();
+    }, 2000);
+  }
+
+  // Method - Clear Form
   static clearForm() {
-    // note1 *: passing as variables did not work --> select directly works
+    // note: passing as variables did not work --> select items directly works:
     document.querySelector("#form-task-title").value = "";
     document.querySelector("#form-task-description").value = "";
     document.querySelector("#form-task-duedate").value = "";
@@ -42,32 +64,33 @@ document
   .addEventListener("click", addTodoCard); // execute funtion addToDoCard
 
 function addTodoCard(event) {
+  event.preventDefault(); // prevent from submitting/reload
+
   // select form-elements needed for task values
   const title = document.querySelector("#form-task-title").value,
     description = document.querySelector("#form-task-description").value,
     dueDate = document.querySelector("#form-task-duedate").value;
 
-  event.preventDefault(); // prevent from submitting/reload
-
-  // prevent form from submitting when fields are empty:
-  if (title == "" || description == "" || dueDate == "") {
-    isEmpty(title, description, dueDate);
-    return;
-  }
-
   // Instantiate a new task
   const task = new Task(title, description, dueDate);
   console.log(task); // console.log(task);
 
-  // Add new task to be displayed on todoList
-  // with TaskList method addTaskToList, that creates a card calling 'createTodoCard':
-  TaskList.addTaskToList(task);
-  // old: todoList.appendChild(createTodoCard(title, description, dueDate)); // todoList.appendChild(todoDiv);
+  // prevent form from submitting when fields are empty:
+  if (title === "" || description === "" || dueDate === "") {
+    const message = "Please add information to all fields.";
+    TaskList.displayCustomAlert(message, "alert-empty-fields"); //pass message and class of alertType based on event
+  } else {
+    const message = "New task added to list.";
+    TaskList.displayCustomAlert(message, "alert-success");
 
-  // CLEAR Form Input.Values
-  TaskList.clearForm();
-  // * note1:
-  // TaskList.clearForm(title, description, dueDate); // sb-check
-  // passing variables did not work --> select elements directly in clearForm() works instead:
-  // ' document.querySelector("#form-task-title").value = ""; ' instead of ' title = ""; '
+    // Add new task to be displayed on todoList
+    // with TaskList method addTaskToList, that creates a card calling 'createTodoCard':
+    TaskList.addTaskToList(task);
+
+    // CLEAR Form Input.Values
+    TaskList.clearForm();
+  }
 }
+
+// sb-todo:
+// intercept dummy clicking causing multiple alerts

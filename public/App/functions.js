@@ -80,15 +80,3 @@ function createTodoCard(title, description, dueDate) {
   newTodoControls.appendChild(completeBtn);
   return todoDiv;
 }
-
-function isEmpty(title, description, dueDate) {
-  if (title == "") {
-    alert("Please add a Title for your task");
-  }
-  if (description == "") {
-    alert("Please add a Description for your task");
-  }
-  if (dueDate == "") {
-    alert("Please add a Due Date for your task");
-  }
-}

@@ -2,9 +2,20 @@
 
 // ### Class TaskList: display / remove / edit task on a list or showing alerts etc.
 export default class TaskList {
+
+  constructor () {
+    this.list = [];
+  }
   // TAKE the whole DIV.TASK-CARD created in function 'createTodoCard' and
   // APPEND (paste) it to the actual div.task-container (see index.html) for 'todoList' or 'doneList':
-  static addTaskToList(task) {
+
+  addTaskToTaskList(task) {
+    this.list.push(task);
+    this.addTaskToList(task);
+    console.log(this.list)
+  }
+
+  addTaskToList(task) {
     const todoList = document.querySelector(".task-container"); // grab todoList Container from the DOM
     todoList.appendChild(
       createTodoCard(task._title, task._description, task._dueDate)

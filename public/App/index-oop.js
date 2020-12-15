@@ -3,6 +3,7 @@ import Task from "./models/Task.js";
 import TaskList from "./models/TaskList.js";
 
 // ### Event-Handler: Add a new Task
+const taskList1 = new TaskList();
 document
   .querySelector(".button-add-task")
   .addEventListener("click", addTodoCard); // execute funtion addToDoCard
@@ -11,13 +12,12 @@ function addTodoCard(event) {
   event.preventDefault(); // prevent from submitting/reload
 
   // select form-elements needed for task values
-  const title = document.querySelector("#form-task-title").value,
-    description = document.querySelector("#form-task-description").value,
-    dueDate = document.querySelector("#form-task-duedate").value;
+  const title = document.querySelector("#form-task-title").value;
+  const description = document.querySelector("#form-task-description").value;
+  const dueDate = document.querySelector("#form-task-duedate").value;
 
   // Instantiate a new task
   const task = new Task(title, description, dueDate);
-  console.log(task); // console.log(task);
 
   // prevent form from submitting when fields are empty:
   if (title === "" || description === "" || dueDate === "") {
@@ -29,7 +29,7 @@ function addTodoCard(event) {
 
     // Add new task to be displayed on todoList
     // with TaskList method addTaskToList, that creates a card calling 'createTodoCard':
-    TaskList.addTaskToList(task);
+    taskList1.addTaskToTaskList(task);
 
     // CLEAR Form Input.Values
     TaskList.clearForm();

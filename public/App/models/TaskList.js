@@ -21,9 +21,9 @@ export default class TaskList {
 
     // Select parent and where to display the customAlert
     const mainContainer = document.querySelector("main");
-    const form = document.querySelector("#todo-form");
+    const form = document.querySelector("section.cards-view");
     // display alert IN main BEFORE the form
-    // insertBefore takes 2 params: (what to insert (div), before what (form))
+    // insertBefore takes 2 params: (what to insert (div), before what (cards-view))
     mainContainer.insertBefore(div, form);
 
     // setTimeout for alert to disappear
@@ -60,7 +60,7 @@ export default class TaskList {
       );
       doneList.appendChild(target.parentElement.parentElement.parentElement);
     }
-  }
+  } // sb-todo: change to customAlert
 
   // Method - Change Style of Card
   toggleStyleTaskCard(target, taskSelected) {
@@ -113,8 +113,10 @@ export default class TaskList {
         inputEnabledDesc.value === "" ||
         inputEnabledDue.value === ""
       ) {
-        alert("No empty fields please.");
-        return; // sb-todo: use method for custom alert
+        const taskList = new TaskList();
+        const message = "No empty fields please.";
+        taskList.displayCustomAlert(message, "alert-empty-fields");
+        return; // return is needed to not save an empty field
       }
       labelTodoTitle.innerText = inputEnabledTitle.value;
       labelTodoDesc.innerText = inputEnabledDesc.value;

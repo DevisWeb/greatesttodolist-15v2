@@ -1,30 +1,35 @@
-// # C L A S S E S
+// ### Class TaskList Object: display, remove, edit task on a list or show alerts etc.
+import TaskStorage from "./TaskStorage.js";
 
-// ### Class TaskList: display / remove / edit task on a list or showing alerts etc.
+const todoList = document.querySelector(".task-container"); // grab todoList Container from the DOM
+const doneList = document.querySelector(".task-container-done");
+
 export default class TaskList {
-  // TAKE the whole DIV.TASK-CARD created in function 'createTodoCard' and
-  // APPEND (paste) it to the actual div.task-container (see index.html) for 'todoList' or 'doneList':
   addTaskToList(task) {
-    const todoList = document.querySelector(".task-container"); // grab todoList Container from the DOM
-    todoList.appendChild(
-      createTodoCard(task._title, task._description, task._dueDate)
-    ); // todoList.appendChild(todoDiv);
+    // take the whole DIV.TASK-CARD incl. content, created with 'createTaskCard' +
+    // append it to the div.task-container: 'todoList' or 'doneList' based on done-status (false/true):
+    if (task.done === false) {
+      todoList.appendChild(createTaskCard(task));
+    } else {
+      doneList.appendChild(createTaskCard(task)); // important, when cards from localStorage should be displayed with page reload, based on 'done'-status
+    }
+
+    console.log("## TaskList_Method addTaskToList - show task details:");
+    console.log(task.title + "\n" + task.description + "\n" + task.dueDate);
+    console.log("done: " + task.done + "\n" + task.uid);
   }
 
   // Method - Display alert to prevent from submitting empty form
   displayCustomAlert(message, alertType) {
-    // construct alert element, create div
-    const div = document.createElement("div");
-    // Add class to style alert
-    div.classList.add("custom-alert", alertType);
+    const div = document.createElement("div"); // div container for alert
+    div.classList.add("custom-alert", alertType); // class for styling
     div.innerText = message; // Add alert text passed by event clicked
 
-    // Select parent and where to display the customAlert
+    // Select parent + where to display the customAlert (IN main BEFORE the form)
     const mainContainer = document.querySelector("main");
-    const form = document.querySelector("section.cards-view");
-    // display alert IN main BEFORE the form
+    const cards = document.querySelector("section.cards-view");
     // insertBefore takes 2 params: (what to insert (div), before what (cards-view))
-    mainContainer.insertBefore(div, form);
+    mainContainer.insertBefore(div, cards);
 
     // setTimeout for alert to disappear
     setTimeout(function () {
@@ -33,23 +38,20 @@ export default class TaskList {
   }
 
   // Method - Delete TaskCard
-  deleteTask(target, taskSelected) {
-    if (target.className === "task-delete") {
-      taskSelected.remove();
-    }
+  deleteTask(cardSelected) {
+    cardSelected.remove();
   }
 
   // Method - Clear Form
   clearForm() {
-    // note: passing as variables did not work --> select items directly works:
     document.querySelector("#form-task-title").value = "";
     document.querySelector("#form-task-description").value = "";
     document.querySelector("#form-task-duedate").value = "";
   }
 
-  // Method - Move TaskCard
-  moveTaskCard(target, todoList, doneList, taskSelected) {
-    if (taskSelected.parentElement.classList.contains("task-container-done")) {
+  // Method - Move TaskCard between Containers
+  moveTaskCard(target, cardSelected) {
+    if (cardSelected.parentElement.classList.contains("task-container-done")) {
       alert(
         "Are you sure we're still not done?\nSo we' ll code the whole damn night again, won't we?\nShould think about creating a SleepDeptCalculator... \n;-)"
       );
@@ -62,65 +64,64 @@ export default class TaskList {
     }
   } // sb-todo: change to customAlert
 
-  // Method - Change Style of Card
-  toggleStyleTaskCard(target, taskSelected) {
-    target.classList.toggle("task-uncomplete");
-    taskSelected.classList.toggle("task-done");
-    target.firstChild.classList.toggle("fa-times");
-    target.parentElement.classList.toggle("task-controls-done");
+  // Method - Change Style of Card (based on done-status)
+  toggleStyleTaskCard(target, cardSelected) {
+    target.classList.toggle("task-uncomplete"); // change icon background
+    cardSelected.classList.toggle("task-done"); // change card background
+    target.firstChild.classList.toggle("fa-times"); // change icon
+    target.parentElement.classList.toggle("task-controls-done"); // change background of task-controls
   }
 
   // Method - Hide(if done) or Show (undone+edit mode) Input fields
-  hideShowElement(taskSelected) {
-    console.log("function hideShowElement called:");
-    if (taskSelected.classList.contains("task-done")) {
-      console.log(" --> SHOW Input fields");
-      taskSelected.classList.remove("enableEditing");
+  hideShowElement(cardSelected) {
+    if (cardSelected.classList.contains("task-done")) {
+      cardSelected.classList.remove("enableEditing");
     }
   }
 
-  // Method - Hide
-  editTaskCard(taskSelected) {
+  // Method - Edit a Task
+  editTaskCard(cardSelected, task) {
+    const taskList = new TaskList();
     console.log(
-      "clicked edit icon\n --> executes function editToDoCard\n --> enable editing or 'save' text changes"
+      "## clicked edit icon\n --> executes function editToDoCard\n --> enable editing or 'save' text changes"
     );
     // define input-fields:
-    const inputEnabledTitle = taskSelected.querySelector("#enableInputTitle");
-    const inputEnabledDesc = taskSelected.querySelector("#enableInputDesc");
-    const inputEnabledDue = taskSelected.querySelector("#enableInputDue");
+    const inputTitle = cardSelected.querySelector(".enableInputTitle");
+    const inputDesc = cardSelected.querySelector(".enableInputDesc");
+    const inputDue = cardSelected.querySelector(".enableInputDue");
     // define labels to pass label-text to input-fields:
-    const labelTodoTitle = taskSelected.querySelector(".task-title");
-    const labelTodoDesc = taskSelected.querySelector(".task-description");
-    const labelTodoDue = taskSelected.querySelector(".task-duedate");
+    const labelTitle = cardSelected.querySelector(".task-title");
+    const labelDesc = cardSelected.querySelector(".task-description");
+    const labelDue = cardSelected.querySelector(".task-duedate");
 
-    console.log("Show Class List inMethod Edit");
-    console.log(taskSelected.classList);
-    if (taskSelected.classList.contains("enableEditing")) {
-      // show input field that now contains the former label text for editing
-      console.log(
-        " Input-fields get text from labels\n --> text can now be edited"
-      );
-      inputEnabledTitle.value = labelTodoTitle.innerText;
-      inputEnabledDesc.value = labelTodoDesc.innerText;
-      inputEnabledDue.value = labelTodoDue.innerText;
-    } else {
-      console.log(
-        " 1) if not empty, labels get text from Input-fields;\n 2) input fields should hide"
-      );
-      //if (taskSelected.querySelector("#enableInputTitle").value === "") {
-      if (
-        inputEnabledTitle.value === "" ||
-        inputEnabledDesc.value === "" ||
-        inputEnabledDue.value === ""
-      ) {
-        const taskList = new TaskList();
-        const message = "No empty fields please.";
-        taskList.displayCustomAlert(message, "alert-empty-fields");
-        return; // return is needed to not save an empty field
-      }
-      labelTodoTitle.innerText = inputEnabledTitle.value;
-      labelTodoDesc.innerText = inputEnabledDesc.value;
-      labelTodoDue.innerText = inputEnabledDue.value;
+    console.log("## edit - Show Class List:\n" + cardSelected.classList);
+
+    // show input fields that contain text from task elements for editing
+    if (cardSelected.classList.contains("enableEditing")) {
+      console.log("## Input-fields are displayed \n --> text can be edited");
+      inputTitle.value = labelTitle.innerText;
+      inputDesc.value = labelDesc.innerText;
+      inputDue.value = labelDue.innerText;
+      return;
     }
+    // edit Mode closed - update task in UI and localStorage
+    if (
+      cardSelected.classList.contains("enableEditing") === false &&
+      inputTitle.value !== "" &&
+      inputDesc.value !== "" &&
+      inputDue.value !== ""
+    ) {
+      console.log(" 1) labels get text from Input\n 2) input fields will hide");
+
+      task.title = labelTitle.innerText = inputTitle.value.trim();
+      task.description = labelDesc.innerText = inputDesc.value.trim();
+      task.dueDate = labelDue.innerText = inputDue.value.trim();
+
+      console.log("## Editing done - updateTask in localStorage \n");
+      TaskStorage.updateTask(task);
+      return;
+    }
+    const message = "No empty fields please.";
+    taskList.displayCustomAlert(message, "alert-empty-fields");
   }
 }

@@ -23,10 +23,9 @@ function addTodoCard(event) {
     description = document.querySelector("#form-task-description").value,
     dueDate = document.querySelector("#form-task-duedate").value;
 
-  // INSTANTIATE a new task object
+  // Instantiate objects
   const task = new Task(title, description, dueDate);
-  // INSTANTIATE a TaskList object (takes care of adding task to the list containers)
-  const taskList = new TaskList();
+  const taskList = new TaskList(); // takes care of adding task to the list containers
   console.log("## see prototype taskList:\n" + taskList);
 
   // PREVENT from submitting when fields are empty:
@@ -35,12 +34,9 @@ function addTodoCard(event) {
     taskList.displayCustomAlert(message, "alert-empty-fields"); //pass message and class of alertType based on event
     return;
   }
-  // ADD new Task to localSTORAGE (Browser)
-  TaskStorage.saveLocal(task); // note difference: static class --> NO INSTANTIATION of class needed
 
-  // Add new task/ display on todoList (method 'addTaskToList' creates a card with 'createTaskCard':
-  taskList.addTaskToList(task);
-  // CLEAR Form Input.Values
+  TaskStorage.saveLocal(task); // static class --> NO INSTANTIATION of class needed
+  taskList.addTaskToList(task); // 'addTaskToList' creates a card for UI with 'createTaskCard'
   taskList.clearForm();
 
   // ALERT (change styling in alerts.css)
@@ -88,7 +84,7 @@ function deleteCheckEdit(e) {
 
     if (cardSelected.classList.contains("task-done")) {
       task.markAsDone();
-      console.log("done =" + task.done);
+      console.log("done: " + task.done);
       TaskStorage.updateTask(task);
       return;
     }

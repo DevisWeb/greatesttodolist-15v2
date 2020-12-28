@@ -1,4 +1,5 @@
 // ### Class TaskList Object: display, remove, edit task on a list or show alerts etc.
+import TaskCard from "./TaskCard.js";
 import TaskStorage from "./TaskStorage.js";
 
 const todoList = document.querySelector(".task-container"); // grab todoList Container from the DOM
@@ -9,9 +10,9 @@ export default class TaskList {
     // take the whole DIV.TASK-CARD incl. content, created with 'createTaskCard' +
     // append it to the div.task-container: 'todoList' or 'doneList' based on done-status (false/true):
     if (task.done === false) {
-      todoList.appendChild(createTaskCard(task));
+      todoList.appendChild(TaskCard.createTaskCard(task));
     } else {
-      doneList.appendChild(createTaskCard(task)); // important, when cards from localStorage should be displayed with page reload, based on 'done'-status
+      doneList.appendChild(TaskCard.createTaskCard(task)); // important, when cards from localStorage should be displayed with page reload, based on 'done'-status
     }
 
     console.log("## TaskList_Method addTaskToList - show task details:");

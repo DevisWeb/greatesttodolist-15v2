@@ -69,19 +69,23 @@ WBS Coding School - Team-Project 3 (week 3+4)
 #### Add dynamic with JS
 
 - [x] transform pseudocode into JS
-- [ ] optional: Add local data storage
+- [x] optional: Add local data storage
 
-#### Think OOP and let's REACT (week 2 of project)
+#### Think OOP (week 2 of project)
 
-- [ ] Transform/Rebuild project with REACT
+- [x] Transform/Rebuild project using OOP
+
+#### Let' s REACT
+
+- [ ] Transform/Rebuild project with REACT (2021)
 
 # Challenges
 
 - Thinking about architecture and transform different ideas of a team into code
-- Teams will rotate to another teams project in week 2. Challenge:
-  - work with code and documention of other teams on a similar project
-  - see how and if another team is able to work with your project / documention
-  - therefore: projects need readable commits and well structured comments in the project code
+- ~~Teams will rotate to another teams project in week 2. Challenge:~~
+  - ~~work with code and documention of other teams on a similar project~~
+  - ~~see how and if another team is able to work with your project / documention~~
+  - ~~therefore: projects need readable commits and well structured comments in the project code~~
 
 ---
 

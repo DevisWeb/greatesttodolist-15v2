@@ -8,7 +8,7 @@
 }
 
 /* specify alert - styling based on case (event) */
-.alert-empty-fields {
+.alert-warning {
   background: white;
   color: rgb(240, 84, 79);
 }

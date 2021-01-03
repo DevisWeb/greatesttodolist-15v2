@@ -31,7 +31,7 @@ function addTodoCard(event) {
   // PREVENT from submitting when fields are empty:
   if (title === "" || description === "" || dueDate === "") {
     const message = "Please add information to all fields.";
-    taskList.displayCustomAlert(message, "alert-empty-fields"); //pass message and class of alertType based on event
+    taskList.displayCustomAlert(message, "alert-warning"); //pass message and class of alertType based on event
     return;
   }
 

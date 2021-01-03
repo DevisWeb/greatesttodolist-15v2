@@ -12,13 +12,8 @@ import TaskList from "./TaskList.js";
 export default class TaskStorage {
   // getTasks from localStorage for the afterwards following methods --> avoids redundant code
   static getTasks() {
-    let tasks;
-    if (localStorage.getItem("tasks") === null) {
-      tasks = [];
-    } else {
-      tasks = JSON.parse(localStorage.getItem("tasks"));
-      // JS object needed: parse back to an array through Jason.parse
-    }
+    let tasks; // for JS object parse back to an array through Jason.parse; else return null
+    tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     return tasks; // returns all items listed inside local storage
   }
 

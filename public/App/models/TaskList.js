@@ -26,7 +26,7 @@ export default class TaskList {
     div.classList.add("custom-alert", alertType); // class for styling
     div.innerText = message; // Add alert text passed by event clicked
 
-    // Select parent + where to display the customAlert (IN main BEFORE the form)
+    // Select parent + where to display the customAlert (IN main BEFORE the cards)
     const mainContainer = document.querySelector("main");
     const cards = document.querySelector("section.cards-view");
     // insertBefore takes 2 params: (what to insert (div), before what (cards-view))
@@ -52,18 +52,19 @@ export default class TaskList {
 
   // Method - Move TaskCard between Containers
   moveTaskCard(target, cardSelected) {
+    const taskList = new TaskList();
     if (cardSelected.parentElement.classList.contains("task-container-done")) {
-      alert(
-        "Are you sure we're still not done?\nSo we' ll code the whole damn night again, won't we?\nShould think about creating a SleepDeptCalculator... \n;-)"
-      );
+      const message =
+        "Task marked as UNDONE. Seems, there is still some work to do ...";
+      taskList.displayCustomAlert(message, "alert-warning");
       todoList.appendChild(target.parentElement.parentElement.parentElement);
     } else {
-      alert(
-        "YES! We did it. Now ready for eatin a big family-pizza with extra of everything and grab some beer!"
-      );
+      const message =
+        "Task marked as DONE. Add a new task or enjoy yourself doing nothing.";
+      taskList.displayCustomAlert(message, "alert-success");
       doneList.appendChild(target.parentElement.parentElement.parentElement);
     }
-  } // sb-todo: change to customAlert
+  }
 
   // Method - Change Style of Card (based on done-status)
   toggleStyleTaskCard(target, cardSelected) {
@@ -108,9 +109,9 @@ export default class TaskList {
     // edit Mode closed - update task in UI and localStorage
     if (
       cardSelected.classList.contains("enableEditing") === false &&
-      inputTitle.value !== "" &&
-      inputDesc.value !== "" &&
-      inputDue.value !== ""
+      inputTitle.value.trim() !== "" &&
+      inputDesc.value.trim() !== "" &&
+      inputDue.value.trim() !== ""
     ) {
       console.log(" 1) labels get text from Input\n 2) input fields will hide");
 
@@ -123,6 +124,6 @@ export default class TaskList {
       return;
     }
     const message = "No empty fields please.";
-    taskList.displayCustomAlert(message, "alert-empty-fields");
+    taskList.displayCustomAlert(message, "alert-warning");
   }
 }

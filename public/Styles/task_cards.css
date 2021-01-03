@@ -125,3 +125,10 @@
 .task-container-done .task-edit {
   display: none;
 }
+
+/* unique id for local storage */
+.task-uid {
+  text-align: center;
+  padding: 0.5rem 0rem 0rem;
+  color: rgba(78, 75, 75, 0.5);
+}
